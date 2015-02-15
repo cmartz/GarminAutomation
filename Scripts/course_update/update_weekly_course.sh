@@ -1,9 +1,9 @@
 #!/bin/bash
 
-newcoursedir="weekly_courses/"
-devcoursedir="/Volumes/GARMIN/Garmin/Courses"
+newcoursedir="weekly_courses"
+devcoursedir="/Volumes/GARMIN/Garmin/NewFiles"
 
-if [ -d  "$devcoursedir" ]
+if [ -d  "$devcoursedir" ]; then
 
   echo "Connected to Garmin!"
 
@@ -11,7 +11,7 @@ if [ -d  "$devcoursedir" ]
   rm -r $devcoursedir/*
 
   # Copy updated weekly courses into device
-  cp $newcourse/* $devcoursedir
+  cp $newcoursedir/* $devcoursedir/
 
   echo "Courses successfully updated."
 
