@@ -1,4 +1,5 @@
 require 'csv'
+include Math
 
 puts 'Hello, World!'
 
@@ -15,13 +16,22 @@ def parse
         row = row.to_s.split(', ')
         row = row.drop_while {|i| i != "\"position_lat\"" }
         
-        lat = row[1]
-        long = row[4]
+        if row.empty?
+            next
+        end
+        
+        lat = row[1].to_s
+        lat.delete! "\""
+        lat = lat.to_i
+        long = row[4].to_s
+        long.delete! "\""
+        long = long.to_i
         
         row = row.drop_while {|i| i != "\"altitude\""}
         
         altitude = row[1].to_s
         altitude.delete! "\""
+        altitude = altitude.to_i
         
         print "latitude: ", lat, " longitude: ", long, " Altitude: ", altitude, "\n"
         
@@ -45,7 +55,6 @@ def parse
             ac_delta_movement = 0
         end
         
-        puts "got a line"
     end
 end
 
